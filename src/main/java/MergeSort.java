@@ -1,6 +1,8 @@
 import java.util.LinkedList;
 
 public class MergeSort {
+
+
     public LinkedList<String> sort(LinkedList<String> queue) {
         return compare(queue);
     }
