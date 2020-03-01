@@ -1,3 +1,5 @@
+package com.example.externalsort;
+
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.concurrent.Callable;
@@ -14,7 +16,7 @@ public class FileSplitterWritering  extends FileWritering implements Callable<Bo
 
     /**
      * Consumes the fileSplitter polling lines from it with the 500 milliseconds of timeout.
-     * Consumes the queue until the FileReader has finished.
+     * Consumes the queue until the com.example.ExternalSort.FileReader has finished.
      *
      * @see FileSplitter#getLinesQueue()
      * @see FileReader

@@ -1,3 +1,6 @@
+package com.example;
+import com.example.externalsort.*;
+
 import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -14,8 +17,7 @@ public class MainApplication {
 
     protected void execute() {
         System.out.println("Running External Sorting!");
-        System.out.println("Time");
-        System.out.println(Runtime.getRuntime().maxMemory());
+        System.out.println(Runtime.getRuntime().totalMemory());
         FileSplitter fileSplitter = new FileSplitter();
         Map<String, File> tempFiles = fileSplitter.split();
 

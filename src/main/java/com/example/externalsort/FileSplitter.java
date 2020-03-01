@@ -1,3 +1,5 @@
+package com.example.externalsort;
+
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -5,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicLong;
 
 public class FileSplitter implements QueueHandle {
     private BlockingQueue<String> linesQueue = new ArrayBlockingQueue<>(30);
@@ -13,7 +14,6 @@ public class FileSplitter implements QueueHandle {
     private final Set<String> exhaustedTempFiles = ConcurrentHashMap.newKeySet();
     private final Map<String, Set<File>> sameFirstCharFilename = new ConcurrentHashMap<>();
     private boolean isReaderDone = false;
-    private static AtomicLong count = new AtomicLong(0);
     private static Integer NR_WRITER_THREADS = Integer.valueOf(ConfigProperties.NR_WRITER_THREADS.value());
 
 
@@ -48,7 +48,7 @@ public class FileSplitter implements QueueHandle {
         sameFirstCharFilename.put(firstChar, temp);
     }
 
-   
+
     public void addTempFile(String filename, File file) {
         if (!tempFiles.containsKey(filename)) {
             tempFiles.put(filename, file);
@@ -63,7 +63,6 @@ public class FileSplitter implements QueueHandle {
     }
 
     private void print() {
-        System.out.println("Lines processed: " + getCount().get());
         System.out.println("Number of temp files: " + tempFiles.size());
     }
 
@@ -86,15 +85,6 @@ public class FileSplitter implements QueueHandle {
     public boolean isReaderDone() {
         return isReaderDone;
     }
-
-    public void increment() {
-        count.incrementAndGet();
-    }
-
-    public static AtomicLong getCount() {
-        return count;
-    }
-
 
     public Map<String, File> getTempFiles() {
         return tempFiles;
